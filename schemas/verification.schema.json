@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/verification.schema.json",
+  "title": "VerificationRecord",
+  "type": "object",
+  "required": [
+    "record_id",
+    "record_type",
+    "asset_id",
+    "status",
+    "verification_date"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "description": "Stable verification record identifier."
+    },
+    "record_type": {
+      "type": "string",
+      "enum": ["generation-log", "continuity-check", "acceptance-review", "approval-record"],
+      "description": "Type of verification record."
+    },
+    "asset_id": {
+      "type": "string",
+      "description": "Asset or output being evaluated."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "pending", "passed", "failed", "approved", "archived"],
+      "description": "Current verification outcome."
+    },
+    "reviewer": {
+      "type": ["string", "null"],
+      "description": "Human or system reviewer responsible for the check."
+    },
+    "verification_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "result_summary": {
+      "type": ["string", "null"],
+      "description": "Summary of verification results."
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "continuity_checks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Additional context or unresolved issues."
+    }
+  },
+  "additionalProperties": true
+}

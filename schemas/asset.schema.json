@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/asset.schema.json",
+  "title": "AssetRecord",
+  "type": "object",
+  "required": [
+    "asset_id",
+    "name",
+    "asset_type",
+    "status",
+    "canonical_status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "asset_id": {
+      "type": "string",
+      "description": "Stable asset identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable asset name."
+    },
+    "asset_type": {
+      "type": "string",
+      "description": "Category such as character, location, prop, wardrobe, concept, or output."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "generated", "verified", "approved", "archived"],
+      "description": "Current production state."
+    },
+    "canonical_status": {
+      "type": "string",
+      "enum": ["proposed", "canon", "approved", "rejected", "archived"],
+      "description": "Canonical status for controlled production decisions."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short description of the asset."
+    },
+    "source": {
+      "type": "string",
+      "description": "Origin of the record or reference used."
+    },
+    "notion_ref": {
+      "type": ["string", "null"],
+      "description": "Optional Notion reference identifier."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": true
+}

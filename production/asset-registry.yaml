@@ -1,0 +1,14 @@
+asset_id: asset-001
+asset_name: placeholder-asset
+asset_type: concept
+status: proposed
+canonical_status: proposed
+version: 0.1.0
+summary: Starter asset record for the production registry.
+owner: project-team
+notion_ref: asset-001
+created_at: 2026-10-17T00:00:00Z
+updated_at: 2026-10-17T00:00:00Z
+source: internal-proposal
+
+# Use this file as a template for asset specifications. Keep all records in a stable format and avoid mixing proposal status with approved canon status.

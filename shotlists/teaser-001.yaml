@@ -1,0 +1,12 @@
+shot_id: shot-001
+title: Teaser opening beat
+status: proposed
+scene_reference: teaser-scene-001
+camera_reference: wide-establishing-shot
+location_id: loc-001
+character_ids: [char-001]
+prompt_id: prompt-001
+continuity_notes: pending review
+verification_status: not-started
+created_at: 2026-10-17T00:00:00Z
+updated_at: 2026-10-17T00:00:00Z

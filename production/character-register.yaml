@@ -1,0 +1,11 @@
+character_id: char-001
+name: TBD
+role: protagonist
+status: proposed
+canonical_status: proposed
+summary: Placeholder character record.
+notion_ref: character-001
+created_at: 2026-10-17T00:00:00Z
+updated_at: 2026-10-17T00:00:00Z
+
+# Add additional fields as needed such as age, motivations, visual cues, references, and continuity notes.

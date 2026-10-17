@@ -1,0 +1,10 @@
+record_id: verification-001
+record_type: generation-log
+asset_id: asset-001
+status: proposed
+reviewer: unassigned
+verification_date: 2026-10-17T00:00:00Z
+result_summary: Placeholder verification record.
+acceptance_criteria: []
+continuity_checks: []
+notes: This record is a template and does not represent an approved final result.

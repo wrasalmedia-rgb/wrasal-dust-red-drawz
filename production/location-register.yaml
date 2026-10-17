@@ -1,0 +1,11 @@
+location_id: loc-001
+name: TBD
+location_type: primary-setting
+status: proposed
+canonical_status: proposed
+summary: Placeholder location record.
+notion_ref: location-001
+created_at: 2026-10-17T00:00:00Z
+updated_at: 2026-10-17T00:00:00Z
+
+# Record spatial rules, story function, visual references, and continuity constraints here.

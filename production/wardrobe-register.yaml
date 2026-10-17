@@ -1,0 +1,11 @@
+wardrobe_id: wardrobe-001
+name: TBD
+wardrobe_type: costume
+status: proposed
+canonical_status: proposed
+summary: Placeholder wardrobe record.
+notion_ref: wardrobe-001
+created_at: 2026-10-17T00:00:00Z
+updated_at: 2026-10-17T00:00:00Z
+
+# Store wardrobe purpose, materials, variations, and continuity constraints here.

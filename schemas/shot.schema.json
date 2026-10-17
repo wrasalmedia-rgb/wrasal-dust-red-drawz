@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/shot.schema.json",
+  "title": "ShotRecord",
+  "type": "object",
+  "required": [
+    "shot_id",
+    "title",
+    "status",
+    "scene_reference",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "shot_id": {
+      "type": "string",
+      "description": "Stable shot identifier."
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable shot title."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "generated", "verified", "approved", "archived"],
+      "description": "Current shot status in the production lifecycle."
+    },
+    "scene_reference": {
+      "type": "string",
+      "description": "Scene or sequence reference."
+    },
+    "camera_reference": {
+      "type": ["string", "null"],
+      "description": "Camera or framing reference."
+    },
+    "character_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "location_id": {
+      "type": ["string", "null"],
+      "description": "Location asset ID if assigned."
+    },
+    "prompt_id": {
+      "type": ["string", "null"],
+      "description": "Linked prompt record ID."
+    },
+    "continuity_notes": {
+      "type": ["string", "null"],
+      "description": "Continuity notes associated with the shot."
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": ["not-started", "pending", "passed", "failed", "requires-revision"],
+      "description": "Verification state for the shot."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": true
+}
