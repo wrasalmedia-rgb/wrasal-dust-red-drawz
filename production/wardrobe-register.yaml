@@ -1,11 +1,116 @@
-wardrobe_id: wardrobe-001
-name: TBD
-wardrobe_type: costume
-status: proposed
-canonical_status: proposed
-summary: Placeholder wardrobe record.
-notion_ref: wardrobe-001
-created_at: 2026-10-17T00:00:00Z
-updated_at: 2026-10-17T00:00:00Z
+version: "0.2.0"
+project: "WRASAL DUST: THE RED DRAWZ"
+case: "Case 001: The Nine-Day Threshold"
+status: "in-build"
+governance_status: "IN BUILD"
 
-# Store wardrobe purpose, materials, variations, and continuity constraints here.
+# ---------------------------------------------------------------------------
+# Cross-reference: narrative garment artifact vs. character wardrobe
+# ---------------------------------------------------------------------------
+# prop-red-drawz-001 ("The Red Drawz") is classified as a PROP / evidence
+# artifact, not as character wardrobe. Its visual specification is locked by
+# decision-008 (Human Decision H-05, 2026-10-17) in production/props-register.yaml
+# and canon/canon-decisions.md:
+#   - unbranded, plain matte crimson/oxblood heavyweight cotton undergarment
+#   - zero logos, zero wordmarks, zero printed graphics, zero brand tags
+#   - matte finish (never satin, glossy, or metallic)
+#   - intrinsic dye pigment under motivated 2700K-5600K light only
+# Wardrobe entries below MUST NOT introduce branding, sheen treatments, or
+# commercial garment styling into any depiction of prop-red-drawz-001.
+# The Case 001 narrative artifact remains UNLINKED from the Linear commercial
+# garment project "RED DRAWZ - Pre-production v2.2 (STYLE 001 - Oxblood Trunk)"
+# unless the Human Creative Authority explicitly links them.
+garment_specification_reference:
+  prop_id: "prop-red-drawz-001"
+  spec_lock_decision: "decision-008"
+  human_decision_token: "H-05 / unbranded_matte_crimson"
+  locked_date: "2026-10-17"
+  authoritative_source: "production/props-register.yaml"
+
+wardrobe:
+  - id: "wardrobe-wrasal-001"
+    id_origin: "PROPOSED"
+    name: "Wrasal Apprentice Hero Wardrobe (Harlem, 2026)"
+    character_id: "char-wrasal-001"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-wardrobe-bible"
+    approval_status: "pending-human-approval"
+    material_rules: "Structured contemporary dark/neutral outerwear and layering suitable for Harlem 2026; visible fabric grain and seam construction; zero occult detective clichés."
+    dependencies:
+      - "char-wrasal-001"
+      - "decision-003"
+    notes: "Blocked on Notion Wardrobe, Accessories & Set Dressing Bible."
+
+  - id: "wardrobe-grant-001"
+    id_origin: "PROPOSED"
+    name: "Mister Grant Bereavement Domestic Wardrobe (Harlem, 2026)"
+    character_id: "char-grant-001"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-wardrobe-bible"
+    approval_status: "pending-human-approval"
+    material_rules: "Grounded, lived-in contemporary American domestic attire (muted neutral tones — charcoal, slate, off-white cotton/wool) that does not imply an unverified occupation and provides neutral separation from prop-red-drawz-001."
+    dependencies:
+      - "char-grant-001"
+      - "decision-002"
+    notes: "Blocked on Notion Wardrobe, Accessories & Set Dressing Bible."
+
+  - id: "wardrobe-keeper-001"
+    id_origin: "PROPOSED"
+    name: "The Keeper Practitioner Wardrobe"
+    character_id: "char-keeper-001"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-wardrobe-bible"
+    approval_status: "pending-human-approval"
+    material_rules: "Distinct silhouette and textile palette differentiating The Keeper from Examiner and Builder; no invented sacred vestments."
+    dependencies:
+      - "char-keeper-001"
+      - "decision-004"
+      - "decision-007"
+    notes: "Blocked on Notion Wardrobe, Accessories & Set Dressing Bible."
+
+  - id: "wardrobe-examiner-001"
+    id_origin: "PROPOSED"
+    name: "The Examiner Practitioner Wardrobe"
+    character_id: "char-examiner-001"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-wardrobe-bible"
+    approval_status: "pending-human-approval"
+    material_rules: "Distinct silhouette and textile palette differentiating The Examiner from Keeper and Builder; no invented sacred vestments."
+    dependencies:
+      - "char-examiner-001"
+      - "decision-004"
+      - "decision-007"
+    notes: "Blocked on Notion Wardrobe, Accessories & Set Dressing Bible."
+
+  - id: "wardrobe-builder-001"
+    id_origin: "PROPOSED"
+    name: "The Builder Practitioner Wardrobe"
+    character_id: "char-builder-001"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-wardrobe-bible"
+    approval_status: "pending-human-approval"
+    material_rules: "Distinct silhouette and textile palette differentiating The Builder from Keeper and Examiner; no invented sacred vestments."
+    dependencies:
+      - "char-builder-001"
+      - "decision-004"
+      - "decision-007"
+    notes: "Blocked on Notion Wardrobe, Accessories & Set Dressing Bible."
+
+  - id: "wardrobe-deceased-wife-001"
+    id_origin: "PROPOSED"
+    name: "Deceased Wife Astral Chamber Appearance Wardrobe"
+    character_id: "char-deceased-wife-001"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-wardrobe-bible"
+    approval_status: "pending-human-approval"
+    material_rules: "Physical textile rendering (no ghostly translucency, shroud clichés, or decay effects); continuity locked across all three practitioner astral chambers unless screenplay specifies variation."
+    dependencies:
+      - "char-deceased-wife-001"
+      - "decision-005"
+    notes: "Blocked on Notion Wardrobe, Accessories & Set Dressing Bible and screenplay."

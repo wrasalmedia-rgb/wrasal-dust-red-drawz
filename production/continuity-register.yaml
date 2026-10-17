@@ -1,10 +1,79 @@
-continuity_id: continuity-001
-title: Placeholder continuity entry
-status: proposed
-canonical_status: proposed
-summary: Placeholder continuity record for story consistency tracking.
-related_asset_ids: []
-created_at: 2026-10-17T00:00:00Z
-updated_at: 2026-10-17T00:00:00Z
+version: "0.2.0"
+project: "WRASAL DUST: THE RED DRAWZ"
+case: "Case 001: The Nine-Day Threshold"
+status: "in-build"
+governance_status: "IN BUILD"
+continuity_rules:
+  - id: "continuity-001"
+    id_origin: "EXISTING"
+    name: "Harlem 2026 Geographic & Temporal Continuity Lock"
+    scope: "all-case-001-shots"
+    rule: "Every exterior and interior shot in Case 001 must remain anchored in Harlem, New York City, 2026. Zero Jamaican exteriors, tropical flora, or Miss Celia period elements may enter Case 001 frames."
+    status: "canon"
+    governance_status: "CANON"
+    dependencies:
+      - "decision-001"
 
-# Record continuity rules, contradictions, approved resolutions, and evidence here.
+  - id: "continuity-red-material-001"
+    id_origin: "PROPOSED"
+    name: "Red Garment Material Chromatic Lock (No Red Scene Wash)"
+    scope: "all-shots-featuring-prop-red-drawz-001"
+    rule: "The red garments (prop-red-drawz-001) must remain materially red through dyed textile pigment under neutral/warm motivated practical light (2700K–5600K). Scene walls, skin tones, and shadow fill must NEVER be bathed in ambient red light."
+    status: "canon"
+    governance_status: "CANON"
+    calibrated_measurement:
+      track_1_neutral_achromatic: "R/G <= 1.35 on unbleached drawer liner paper, plaster, unpainted cloth, and skin measured > 5 cm from the garment."
+      track_2_intrinsically_warm: "Dark wood (American walnut, mahogany, stained oak) is exempt from the absolute 1.35 ceiling because intrinsic brown pigment yields R/G 1.6-2.6 under 2700K-3200K. Evaluate instead by occluded wood control delta |Delta(R/G)| <= 0.15 between a wood patch in the garment's lit environment and an occluded same-material wood control outside the garment's light/bounce path."
+      reporting_rule: "Report both tracks for any frame containing both surface classes; neither alone clears Gate B."
+    dependencies:
+      - "decision-006"
+      - "decision-008"
+      - "decision-010"
+      - "prop-red-drawz-001"
+
+  - id: "continuity-garment-spec-001"
+    id_origin: "PROPOSED"
+    name: "Red Drawz Unbranded Garment Specification Lock (H-05)"
+    scope: "all-shots-featuring-prop-red-drawz-001"
+    rule: "prop-red-drawz-001 must be depicted as an unbranded, plain matte crimson/oxblood heavyweight cotton undergarment: zero logos, zero wordmarks, zero printed graphics, zero visible brand tags, zero designer labels; matte surface finish (never satin, glossy, or metallic); visible knitted jersey wales, double-needle flatlock seams, plain tonal elastic waistband, and natural fold weight. The Case 001 narrative artifact remains unlinked from the Linear commercial garment project 'RED DRAWZ - Pre-production v2.2 (STYLE 001 - Oxblood Trunk)' unless the Human Creative Authority explicitly links them."
+    status: "canon"
+    governance_status: "CANON"
+    dependencies:
+      - "decision-006"
+      - "decision-008"
+      - "prop-red-drawz-001"
+
+  - id: "continuity-identity-tier00-001"
+    id_origin: "PROPOSED"
+    name: "Tier 00 Character Identity Reference Gate"
+    scope: "all-character-shots"
+    rule: "No shot depicting a named character's face or body (char-wrasal-001, char-grant-001, char-keeper-001, char-examiner-001, char-builder-001, char-deceased-wife-001) may be promoted to READY FOR TEST or APPROVED ASSET without an approved Tier 00 FACE_MASTER and BODY_MASTER reference input."
+    status: "canon"
+    governance_status: "CANON"
+    dependencies:
+      - "decision-002"
+      - "decision-003"
+      - "decision-004"
+
+  - id: "continuity-ontological-001"
+    id_origin: "PROPOSED"
+    name: "Deceased Wife Ontological Uncertainty Lock"
+    scope: "all-astral-chamber-shots"
+    rule: "Appearances of char-deceased-wife-001 inside loc-astral-chamber-001 must preserve strict ontological ambiguity: render with physical optical weight and stillness; prohibit translucent ghost shaders, monster distortion, dream-haze blur, or visual confirmation of true identity."
+    status: "canon"
+    governance_status: "CANON"
+    dependencies:
+      - "decision-005"
+      - "char-deceased-wife-001"
+      - "loc-astral-chamber-001"
+
+  - id: "continuity-cultural-epistemic-001"
+    id_origin: "PROPOSED"
+    name: "Cultural Responsibility & Fictional Rule Separation Gate"
+    scope: "all-prompts-shots-and-documentation"
+    rule: "Never depict or describe the fictional Nine-Day Threshold or red garment procedures as verified universal Jamaican religious or cultural practice; prohibit borrowed sacred iconography."
+    status: "canon"
+    governance_status: "CANON"
+    dependencies:
+      - "decision-006"
+      - "decision-007"

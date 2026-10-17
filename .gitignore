@@ -64,3 +64,25 @@ reference-private/
 # Do not track generated project metadata files unless explicitly approved
 *.bak
 *.orig
+
+# ---------------------------------------------------------------------------
+# DURABLE MEDIA ARTIFACT STORE — deliberate exception to the exclusions above
+# ---------------------------------------------------------------------------
+# The blanket binary patterns above (`*.png`, `*.jpg`, ...) exist to keep
+# incidental and scratch media out of the repository. They MUST NOT cover the
+# DESIGNATED DURABLE ARTIFACT STORE, which is the fallback store for production
+# media when Git LFS is unavailable or unverified (see
+# production/media-preservation-policy.md and
+# production/media-preservation-register.yaml).
+#
+#   production/media/**        canonical store for APPROVED ASSET media
+#   verification/tests/**      canonical store for test-bench media
+#                              (candidates, tested frames, derivatives)
+#
+# Media in these trees must survive session boundaries and must be recoverable
+# by SHA-256 checksum. Never re-cover these paths with a blanket binary
+# pattern. Large-format masters that must stay out of ordinary Git tracking go
+# to external storage and are recorded in the preservation register with a
+# durable URI — they are not simply dropped.
+!production/media/**
+!verification/tests/**

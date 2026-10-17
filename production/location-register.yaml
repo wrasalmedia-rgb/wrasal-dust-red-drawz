@@ -1,11 +1,67 @@
-location_id: loc-001
-name: TBD
-location_type: primary-setting
-status: proposed
-canonical_status: proposed
-summary: Placeholder location record.
-notion_ref: location-001
-created_at: 2026-10-17T00:00:00Z
-updated_at: 2026-10-17T00:00:00Z
+version: "0.2.0"
+project: "WRASAL DUST: THE RED DRAWZ"
+case: "Case 001: The Nine-Day Threshold"
+status: "in-build"
+governance_status: "IN BUILD"
+locations:
+  - id: "loc-harlem-ext-001"
+    id_origin: "PROPOSED"
+    name: "Harlem Brownstone Street & Threshold Exterior (NYC, 2026)"
+    city: "Harlem, New York City"
+    period: "2026"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "harlem-2026-setting-canon-specific-plate-proposed"
+    approval_status: "pending-human-approval"
+    lighting_rules: "Controlled low-key 2026 NYC night/pre-dawn practical streetlamp and vestibule illumination; black stays black; zero red filter or neon wash."
+    dependencies:
+      - "decision-001"
+    notes: "Anchors opening geography in Harlem, NYC, 2026. Explicitly rejects Jamaica exterior from Blueprint v0.2 DST-01."
 
-# Record spatial rules, story function, visual references, and continuity constraints here.
+  - id: "loc-grant-residence-001"
+    id_origin: "PROPOSED"
+    name: "Mister Grant's Harlem Residence — Interior Threshold & Living/Bedroom Space"
+    city: "Harlem, New York City"
+    period: "2026"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-location-register"
+    approval_status: "pending-human-approval"
+    lighting_rules: "Motivated warm domestic practicals (tungsten lamp ~2700K–3200K) and cool window/street spill (~4500K–5600K). Strictly no ambient red lighting."
+    dependencies:
+      - "decision-001"
+      - "decision-002"
+      - "decision-006"
+    notes: "Primary interior for opening bereavement beats and physical inspection of prop-red-drawz-001."
+
+  - id: "loc-practitioner-space-001"
+    id_origin: "PROPOSED"
+    name: "Practitioner Working & Consultation Space (Harlem, 2026)"
+    city: "Harlem, New York City"
+    period: "2026"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "proposed-pending-location-register"
+    approval_status: "pending-human-approval"
+    lighting_rules: "Controlled low-key architectural illumination; high material legibility; no occult-parlor clichés."
+    dependencies:
+      - "decision-001"
+      - "decision-003"
+      - "decision-004"
+    notes: "Workspace where Wrasal and the practitioner triad evaluate Case 001."
+
+  - id: "loc-astral-chamber-001"
+    id_origin: "PROPOSED"
+    name: "Practitioner Astral Mental Chambers (Keeper 001a / Examiner 001b / Builder 001c)"
+    city: "Harlem, New York City (Physical Anchor)"
+    period: "2026"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "canon-concept-locked-visual-plates-reference-needed"
+    approval_status: "pending-human-approval"
+    lighting_rules: "Quiet, architectural, high-acuity low-key light; no dream-blur, fog soup, or sci-fi HUDs; preserves ambiguity of char-deceased-wife-001."
+    dependencies:
+      - "decision-001"
+      - "decision-004"
+      - "decision-005"
+    notes: "Must differentiate Keeper, Examiner, and Builder mental chambers once Notion registers are shared."

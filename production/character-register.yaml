@@ -1,11 +1,133 @@
-character_id: char-001
-name: TBD
-role: protagonist
-status: proposed
-canonical_status: proposed
-summary: Placeholder character record.
-notion_ref: character-001
-created_at: 2026-10-17T00:00:00Z
-updated_at: 2026-10-17T00:00:00Z
+version: "0.2.0"
+project: "WRASAL DUST: THE RED DRAWZ"
+case: "Case 001: The Nine-Day Threshold"
+status: "in-build"
+governance_status: "IN BUILD"
+characters:
+  - id: "char-wrasal-001"
+    id_origin: "PROPOSED"
+    name: "Wrasal"
+    role: "Apprentice working with experienced practitioners"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "canon-role-and-voice-locked-visual-reference-needed"
+    approval_status: "pending-human-approval"
+    known_canon_facts:
+      - "Apprentice working alongside the experienced practitioners (Keeper, Examiner, Builder)."
+      - "Quick learner."
+      - "Speaks composed standard British English."
+      - "Operates in Harlem, New York City, 2026 during Case 001."
+    prohibited_inventions:
+      - "Do not substitute a generic occult investigator appearance."
+      - "Do not alter vocal register away from composed standard British English."
+    visual_reference_tier: "Unresolved reference (Tier 00 FACE_MASTER and BODY_MASTER required)"
+    dependencies:
+      - "decision-001"
+      - "decision-003"
+    notes: "Primary blocker for any production shot depicting Wrasal's face or body."
 
-# Add additional fields as needed such as age, motivations, visual cues, references, and continuity notes.
+  - id: "char-grant-001"
+    id_origin: "PROPOSED"
+    name: "Mister Grant"
+    role: "American widower / bereaved husband at the center of Case 001"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "canon-biography-boundary-locked-visual-reference-needed"
+    approval_status: "pending-human-approval"
+    known_canon_facts:
+      - "American widower."
+      - "Marriage lasted less than two years."
+      - "Dealing with the aftermath of his wife's death in Harlem, NYC, 2026."
+    prohibited_inventions:
+      - "Do not invent additional biography, appearance details, occupation, or personal history as canon unless confirmed in source records."
+    visual_reference_tier: "Unresolved reference (Tier 00 FACE_MASTER and BODY_MASTER required)"
+    dependencies:
+      - "decision-001"
+      - "decision-002"
+    notes: "Central subject of opening domestic bereavement beats; requires human-approved Tier 00 reference before facial generation."
+
+  - id: "char-keeper-001"
+    id_origin: "PROPOSED"
+    name: "The Keeper"
+    role: "Experienced practitioner (Practitioner Triad — Role 1)"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "canon-role-locked-screenplay-and-visual-reference-needed"
+    approval_status: "pending-human-approval"
+    known_canon_facts:
+      - "Member of the experienced practitioner framework around Case 001."
+      - "Distinct from The Examiner and The Builder."
+      - "Experiences an independent appearance of a figure appearing to be the deceased wife inside the Keeper's astral mental chamber."
+    prohibited_inventions:
+      - "Do not collapse into Examiner or Builder."
+      - "Do not assign dialogue, actions, or visual appearance without checking screenplay and character records."
+    visual_reference_tier: "Unresolved reference"
+    dependencies:
+      - "decision-001"
+      - "decision-004"
+      - "decision-005"
+    notes: "Blocked on Notion Character Production & Continuity Register and screenplay access."
+
+  - id: "char-examiner-001"
+    id_origin: "PROPOSED"
+    name: "The Examiner"
+    role: "Experienced practitioner (Practitioner Triad — Role 2)"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "canon-role-locked-screenplay-and-visual-reference-needed"
+    approval_status: "pending-human-approval"
+    known_canon_facts:
+      - "Member of the experienced practitioner framework around Case 001."
+      - "Distinct from The Keeper and The Builder."
+      - "Experiences an independent appearance of a figure appearing to be the deceased wife inside the Examiner's astral mental chamber."
+    prohibited_inventions:
+      - "Do not collapse into Keeper or Builder."
+      - "Do not assign dialogue, actions, or visual appearance without checking screenplay and character records."
+    visual_reference_tier: "Unresolved reference"
+    dependencies:
+      - "decision-001"
+      - "decision-004"
+      - "decision-005"
+    notes: "Blocked on Notion Character Production & Continuity Register and screenplay access."
+
+  - id: "char-builder-001"
+    id_origin: "PROPOSED"
+    name: "The Builder"
+    role: "Experienced practitioner (Practitioner Triad — Role 3)"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "canon-role-locked-screenplay-and-visual-reference-needed"
+    approval_status: "pending-human-approval"
+    known_canon_facts:
+      - "Member of the experienced practitioner framework around Case 001."
+      - "Distinct from The Keeper and The Examiner."
+      - "Experiences an independent appearance of a figure appearing to be the deceased wife inside the Builder's astral mental chamber."
+    prohibited_inventions:
+      - "Do not collapse into Keeper or Examiner."
+      - "Do not assign dialogue, actions, or visual appearance without checking screenplay and character records."
+    visual_reference_tier: "Unresolved reference"
+    dependencies:
+      - "decision-001"
+      - "decision-004"
+      - "decision-005"
+    notes: "Blocked on Notion Character Production & Continuity Register and screenplay access."
+
+  - id: "char-deceased-wife-001"
+    id_origin: "PROPOSED"
+    name: "Deceased Wife (Apparent Figure)"
+    role: "Apparent figure of Mister Grant's deceased wife / unconfirmed astral chamber presence"
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+    canon_status: "canon-ontological-uncertainty-locked-visual-reference-needed"
+    approval_status: "pending-human-approval"
+    known_canon_facts:
+      - "Married to Mister Grant for less than two years prior to her death."
+      - "A figure appearing to be her independently appears in the astral mental chamber of each practitioner."
+      - "True identity and nature are not confirmed; familiarity does not prove identity."
+    prohibited_inventions:
+      - "Do not depict automatically as a conventional transparent ghost, monster, hallucination, or verified entity."
+    visual_reference_tier: "Unresolved reference"
+    dependencies:
+      - "decision-002"
+      - "decision-005"
+    notes: "Requires strict optical restraint to preserve ontological uncertainty across all three astral chamber appearances."
