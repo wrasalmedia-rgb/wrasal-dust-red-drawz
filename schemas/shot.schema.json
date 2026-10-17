@@ -1,67 +1,93 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/shot.schema.json",
-  "title": "ShotRecord",
+  "title": "WRASAL DUST Shot Specification",
   "type": "object",
   "required": [
     "shot_id",
-    "title",
-    "status",
-    "scene_reference",
-    "created_at",
-    "updated_at"
+    "scene_id",
+    "dramatic_purpose",
+    "characters_present",
+    "location_id",
+    "shot_size",
+    "camera_angle",
+    "lens_feel",
+    "movement",
+    "lighting_motivation",
+    "sound_cue",
+    "continuity_in",
+    "continuity_out",
+    "status"
   ],
   "properties": {
     "shot_id": {
-      "type": "string",
-      "description": "Stable shot identifier."
+      "type": "string"
     },
-    "title": {
-      "type": "string",
-      "description": "Human-readable shot title."
+    "scene_id": {
+      "type": "string"
     },
-    "status": {
-      "type": "string",
-      "enum": ["proposed", "generated", "verified", "approved", "archived"],
-      "description": "Current shot status in the production lifecycle."
+    "scene_beat": {
+      "type": "string"
     },
-    "scene_reference": {
-      "type": "string",
-      "description": "Scene or sequence reference."
+    "dramatic_purpose": {
+      "type": "string"
     },
-    "camera_reference": {
-      "type": ["string", "null"],
-      "description": "Camera or framing reference."
-    },
-    "character_ids": {
+    "characters_present": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "location_id": {
-      "type": ["string", "null"],
-      "description": "Location asset ID if assigned."
+      "type": "string"
     },
-    "prompt_id": {
-      "type": ["string", "null"],
-      "description": "Linked prompt record ID."
+    "wardrobe_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
-    "continuity_notes": {
-      "type": ["string", "null"],
-      "description": "Continuity notes associated with the shot."
+    "prop_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
-    "verification_status": {
-      "type": "string",
-      "enum": ["not-started", "pending", "passed", "failed", "requires-revision"],
-      "description": "Verification state for the shot."
+    "shot_size": {
+      "type": "string"
     },
-    "created_at": {
-      "type": "string",
-      "format": "date-time"
+    "camera_angle": {
+      "type": "string"
     },
-    "updated_at": {
-      "type": "string",
-      "format": "date-time"
+    "lens_feel": {
+      "type": "string"
+    },
+    "movement": {
+      "type": "string"
+    },
+    "lighting_motivation": {
+      "type": "string"
+    },
+    "color_material_note": {
+      "type": "string"
+    },
+    "sound_cue": {
+      "type": "string"
+    },
+    "continuity_in": {
+      "type": "string"
+    },
+    "continuity_out": {
+      "type": "string"
+    },
+    "verification_target": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "governance_status": {
+      "type": "string"
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }
