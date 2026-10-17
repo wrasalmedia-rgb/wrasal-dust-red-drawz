@@ -1,60 +1,925 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/asset.schema.json",
-  "title": "AssetRecord",
+  "title": "WRASAL DUST Asset Record",
   "type": "object",
   "required": [
-    "asset_id",
+    "id",
+    "category",
     "name",
-    "asset_type",
     "status",
-    "canonical_status",
-    "created_at",
-    "updated_at"
+    "canon_status",
+    "approval_status",
+    "version",
+    "owner",
+    "dependencies"
   ],
   "properties": {
-    "asset_id": {
+    "id": {
       "type": "string",
-      "description": "Stable asset identifier."
+      "description": "Stable cross-system identifier."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "character",
+        "location",
+        "prop",
+        "wardrobe",
+        "set-dressing",
+        "shot",
+        "prompt",
+        "image-prompt",
+        "motion-prompt",
+        "sound",
+        "verification"
+      ]
     },
     "name": {
-      "type": "string",
-      "description": "Human-readable asset name."
-    },
-    "asset_type": {
-      "type": "string",
-      "description": "Category such as character, location, prop, wardrobe, concept, or output."
+      "type": "string"
     },
     "status": {
       "type": "string",
-      "enum": ["proposed", "generated", "verified", "approved", "archived"],
-      "description": "Current production state."
+      "enum": [
+        "proposed",
+        "in-build",
+        "reference-needed",
+        "ready-for-test",
+        "tested",
+        "needs-revision",
+        "approved-asset",
+        "canon",
+        "superseded"
+      ]
     },
-    "canonical_status": {
+    "governance_status": {
       "type": "string",
-      "enum": ["proposed", "canon", "approved", "rejected", "archived"],
-      "description": "Canonical status for controlled production decisions."
+      "enum": [
+        "PROPOSED",
+        "IN BUILD",
+        "REFERENCE NEEDED",
+        "READY FOR TEST",
+        "TESTED",
+        "NEEDS REVISION",
+        "APPROVED ASSET",
+        "CANON",
+        "SUPERSEDED"
+      ]
     },
-    "summary": {
+    "id_origin": {
       "type": "string",
-      "description": "Short description of the asset."
+      "enum": [
+        "EXISTING",
+        "PROPOSED"
+      ]
     },
-    "source": {
+    "canon_status": {
+      "type": "string"
+    },
+    "approval_status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "downstream_dependents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope": {
       "type": "string",
-      "description": "Origin of the record or reference used."
+      "enum": [
+        "opening-sequence-and-poc",
+        "poc-core"
+      ]
     },
-    "notion_ref": {
-      "type": ["string", "null"],
-      "description": "Optional Notion reference identifier."
+    "notes": {
+      "type": "string"
     },
-    "created_at": {
+    "approved_date": {
       "type": "string",
-      "format": "date-time"
+      "description": "ISO date on which the Human Creative Authority approved this asset."
     },
-    "updated_at": {
+    "approved_by": {
       "type": "string",
-      "format": "date-time"
+      "description": "Authority that granted approval. Must be 'human-creative-authority'."
+    },
+    "approved_media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "PreservedMediaReference",
+        "description": "A reference to one preserved medium (master or named derivative). INVARIANT 1: a sha256 establishes FILE IDENTITY, never approval. INVARIANT 2: delivery_status (governance) and storage_status (preservation) are independent facts; an APPROVED ASSET may legitimately read storage_status 'recorded-only' or 'preservation-incident'. INVARIANT 3: an approved media reference is immutable - a changed sha256 under the same id requires superseding the entry and appending to sha256_history, never an in-place edit.",
+        "required": [
+          "id",
+          "type",
+          "lineage",
+          "delivery_status",
+          "storage_status",
+          "sha256"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable asset ID. The master and every derivative carry their own distinct id."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "image",
+              "motion",
+              "audio"
+            ]
+          },
+          "shot_id": {
+            "type": "string"
+          },
+          "path": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical repository-relative path, or an explicit durable URI. Null when the medium is held externally."
+          },
+          "durable_uri": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Stable retrieval reference for externally stored media. Required when path is null."
+          },
+          "present": {
+            "type": "boolean",
+            "description": "Whether the bytes are currently retrievable from the designated store."
+          },
+          "storage_status": {
+            "enum": [
+              "preserved-retrievable",
+              "recorded-only",
+              "preservation-incident"
+            ],
+            "description": "preserved-retrievable = bytes held and checksum re-verifies; recorded-only = metadata only, retrieval impossible; preservation-incident = should exist but is absent."
+          },
+          "byte_length": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "dimensions": {
+            "type": "string",
+            "description": "Pixel dimensions, e.g. '1403x1121'."
+          },
+          "crop_geometry": {
+            "type": "string",
+            "description": "Deterministic crop geometry, e.g. '1403x758+0+130'."
+          },
+          "aspect_ratio": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "colorspace": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 of the bytes. Establishes identity on retrieval. Does NOT establish approval."
+          },
+          "sha256_history": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "description": "Append-only. Preserves prior checksums so a replaced file cannot silently retain the same identity."
+          },
+          "tier": {
+            "type": "string"
+          },
+          "delivery_status": {
+            "enum": [
+              "GENERATED CANDIDATE",
+              "TESTED - AWAITING HUMAN REVIEW",
+              "NEEDS REVISION",
+              "APPROVED ASSET",
+              "SUPERSEDED"
+            ]
+          },
+          "approved_by": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Must be 'human-creative-authority' for approved media."
+          },
+          "approved_date": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "decision_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical decision record that authorised this approval. Required for APPROVED ASSET."
+          },
+          "superseded_by": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Id of the media reference that replaced this one."
+          },
+          "derivative_of": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Provenance: stable asset id of the source medium. REQUIRED (non-empty string) when lineage == 'derivative'; must be null or absent when lineage == 'original'."
+          },
+          "transformation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Provenance: the exact transformation applied to the source, sufficient to regenerate or audit the derivative (e.g. 'convert <master> -crop 1403x758+0+130 +repage <out>'). REQUIRED when lineage == 'derivative'; must be null or absent when lineage == 'original'."
+          },
+          "storage_note": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "lineage": {
+            "enum": [
+              "original",
+              "derivative"
+            ],
+            "description": "R-1. Provenance is MANDATORY and explicit. 'original' = a genuinely original generation with no parent; declare it as an ORIGINAL ASSET rather than as a derivative with missing lineage. 'derivative' = a crop, edit, grade, reframe, or other transformation of another medium, and MUST name both derivative_of and transformation."
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "delivery_status": {
+                  "const": "APPROVED ASSET"
+                }
+              },
+              "required": [
+                "delivery_status"
+              ]
+            },
+            "then": {
+              "required": [
+                "approved_by",
+                "approved_date",
+                "decision_id"
+              ],
+              "properties": {
+                "approved_by": {
+                  "const": "human-creative-authority"
+                }
+              }
+            },
+            "else": {
+              "not": {
+                "required": [
+                  "approved_by"
+                ]
+              },
+              "description": "Non-approved media must not carry an approved_by field."
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "path": {
+                  "const": null
+                }
+              },
+              "required": [
+                "path"
+              ]
+            },
+            "then": {
+              "required": [
+                "durable_uri"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "storage_status": {
+                  "const": "preserved-retrievable"
+                }
+              },
+              "required": [
+                "storage_status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "present": {
+                  "const": true
+                }
+              },
+              "required": [
+                "path"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "storage_status": {
+                  "const": "preservation-incident"
+                }
+              },
+              "required": [
+                "storage_status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "present": {
+                  "const": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "lineage": {
+                  "const": "derivative"
+                }
+              },
+              "required": [
+                "lineage"
+              ]
+            },
+            "then": {
+              "required": [
+                "derivative_of",
+                "transformation"
+              ],
+              "properties": {
+                "derivative_of": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "transformation": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "description": "R-1: a derivative must name its source and its transformation."
+          },
+          {
+            "if": {
+              "properties": {
+                "lineage": {
+                  "const": "original"
+                }
+              },
+              "required": [
+                "lineage"
+              ]
+            },
+            "then": {
+              "properties": {
+                "derivative_of": {
+                  "type": "null"
+                },
+                "transformation": {
+                  "type": "null"
+                }
+              }
+            },
+            "description": "R-1: an original asset declares no lineage rather than a derivative with missing parentage."
+          }
+        ],
+        "additionalProperties": false
+      },
+      "description": "Media promoted to, or recorded as, APPROVED ASSET. Each entry is independently identified."
+    },
+    "candidate_media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "PreservedMediaReference",
+        "description": "A reference to one preserved medium (master or named derivative). INVARIANT 1: a sha256 establishes FILE IDENTITY, never approval. INVARIANT 2: delivery_status (governance) and storage_status (preservation) are independent facts; an APPROVED ASSET may legitimately read storage_status 'recorded-only' or 'preservation-incident'. INVARIANT 3: an approved media reference is immutable - a changed sha256 under the same id requires superseding the entry and appending to sha256_history, never an in-place edit.",
+        "required": [
+          "id",
+          "type",
+          "lineage",
+          "delivery_status",
+          "storage_status",
+          "sha256"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Stable asset ID. The master and every derivative carry their own distinct id."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "image",
+              "motion",
+              "audio"
+            ]
+          },
+          "shot_id": {
+            "type": "string"
+          },
+          "path": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical repository-relative path, or an explicit durable URI. Null when the medium is held externally."
+          },
+          "durable_uri": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Stable retrieval reference for externally stored media. Required when path is null."
+          },
+          "present": {
+            "type": "boolean",
+            "description": "Whether the bytes are currently retrievable from the designated store."
+          },
+          "storage_status": {
+            "enum": [
+              "preserved-retrievable",
+              "recorded-only",
+              "preservation-incident"
+            ],
+            "description": "preserved-retrievable = bytes held and checksum re-verifies; recorded-only = metadata only, retrieval impossible; preservation-incident = should exist but is absent."
+          },
+          "byte_length": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "dimensions": {
+            "type": "string",
+            "description": "Pixel dimensions, e.g. '1403x1121'."
+          },
+          "crop_geometry": {
+            "type": "string",
+            "description": "Deterministic crop geometry, e.g. '1403x758+0+130'."
+          },
+          "aspect_ratio": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "colorspace": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 of the bytes. Establishes identity on retrieval. Does NOT establish approval."
+          },
+          "sha256_history": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "description": "Append-only. Preserves prior checksums so a replaced file cannot silently retain the same identity."
+          },
+          "tier": {
+            "type": "string"
+          },
+          "delivery_status": {
+            "enum": [
+              "GENERATED CANDIDATE",
+              "TESTED - AWAITING HUMAN REVIEW",
+              "NEEDS REVISION",
+              "APPROVED ASSET",
+              "SUPERSEDED"
+            ]
+          },
+          "approved_by": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Must be 'human-creative-authority' for approved media."
+          },
+          "approved_date": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "decision_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical decision record that authorised this approval. Required for APPROVED ASSET."
+          },
+          "superseded_by": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Id of the media reference that replaced this one."
+          },
+          "derivative_of": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Provenance: stable asset id of the source medium. REQUIRED (non-empty string) when lineage == 'derivative'; must be null or absent when lineage == 'original'."
+          },
+          "transformation": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Provenance: the exact transformation applied to the source, sufficient to regenerate or audit the derivative (e.g. 'convert <master> -crop 1403x758+0+130 +repage <out>'). REQUIRED when lineage == 'derivative'; must be null or absent when lineage == 'original'."
+          },
+          "storage_note": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "lineage": {
+            "enum": [
+              "original",
+              "derivative"
+            ],
+            "description": "R-1. Provenance is MANDATORY and explicit. 'original' = a genuinely original generation with no parent; declare it as an ORIGINAL ASSET rather than as a derivative with missing lineage. 'derivative' = a crop, edit, grade, reframe, or other transformation of another medium, and MUST name both derivative_of and transformation."
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "delivery_status": {
+                  "const": "APPROVED ASSET"
+                }
+              },
+              "required": [
+                "delivery_status"
+              ]
+            },
+            "then": {
+              "required": [
+                "approved_by",
+                "approved_date",
+                "decision_id"
+              ],
+              "properties": {
+                "approved_by": {
+                  "const": "human-creative-authority"
+                }
+              }
+            },
+            "else": {
+              "not": {
+                "required": [
+                  "approved_by"
+                ]
+              },
+              "description": "Non-approved media must not carry an approved_by field."
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "path": {
+                  "const": null
+                }
+              },
+              "required": [
+                "path"
+              ]
+            },
+            "then": {
+              "required": [
+                "durable_uri"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "storage_status": {
+                  "const": "preserved-retrievable"
+                }
+              },
+              "required": [
+                "storage_status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "present": {
+                  "const": true
+                }
+              },
+              "required": [
+                "path"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "storage_status": {
+                  "const": "preservation-incident"
+                }
+              },
+              "required": [
+                "storage_status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "present": {
+                  "const": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "lineage": {
+                  "const": "derivative"
+                }
+              },
+              "required": [
+                "lineage"
+              ]
+            },
+            "then": {
+              "required": [
+                "derivative_of",
+                "transformation"
+              ],
+              "properties": {
+                "derivative_of": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "transformation": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "description": "R-1: a derivative must name its source and its transformation."
+          },
+          {
+            "if": {
+              "properties": {
+                "lineage": {
+                  "const": "original"
+                }
+              },
+              "required": [
+                "lineage"
+              ]
+            },
+            "then": {
+              "properties": {
+                "derivative_of": {
+                  "type": "null"
+                },
+                "transformation": {
+                  "type": "null"
+                }
+              }
+            },
+            "description": "R-1: an original asset declares no lineage rather than a derivative with missing parentage."
+          }
+        ],
+        "additionalProperties": false
+      },
+      "description": "Media not yet approved. Item schema is identical to approved_media (R-1 lineage, storage_status, approval authority, preservation coherence)."
+    },
+    "garment_spec_lock": {
+      "type": "object",
+      "title": "DesignConstraintLock",
+      "description": "A HUMAN-AUTHORISED DESIGN CONSTRAINT. Records what a thing must look like. Must never be used to record a measurement or verification rule, and a verification rule must never be recorded here.",
+      "required": [
+        "authority_type",
+        "decision_id"
+      ],
+      "properties": {
+        "authority_type": {
+          "const": "design-constraint"
+        },
+        "decision_id": {
+          "type": "string"
+        },
+        "human_decision_token": {
+          "type": "string"
+        },
+        "locked_date": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "calibrated_heuristic": {
+      "type": "object",
+      "title": "VerificationRule",
+      "description": "A HUMAN-AUTHORISED VERIFICATION RULE. Records how conformance is measured. Must never be used to record a design constraint, and a design constraint must never be recorded here.",
+      "required": [
+        "authority_type",
+        "decision_id"
+      ],
+      "properties": {
+        "authority_type": {
+          "const": "verification-rule"
+        },
+        "decision_id": {
+          "type": "string"
+        },
+        "calibrated_date": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "test_references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Paths to verification artefacts exercising this asset."
+    },
+    "version_history": {
+      "type": "array",
+      "description": "Append-only. Every schema change records version, date, rationale, compatibility assessment, and tests performed (R-6).",
+      "items": {
+        "type": "object",
+        "required": [
+          "version",
+          "date",
+          "note",
+          "compatibility",
+          "tests"
+        ],
+        "properties": {
+          "version": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "description": "Rationale for the change."
+          },
+          "compatibility": {
+            "type": "string",
+            "description": "Assessment against the versioning_policy: patch / minor / major, and against which baseline."
+          },
+          "tests": {
+            "type": "string",
+            "description": "Tests performed to validate the change."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "media_disposition": {
+      "type": "object",
+      "description": "Current PRODUCTION disposition of an asset's media, kept separate from its historical approval state. Exists so that a lost medium can be dispositioned without rewriting the approval record that preceded it.",
+      "required": [
+        "disposition"
+      ],
+      "properties": {
+        "disposition": {
+          "enum": [
+            "in-production",
+            "approved-media-preserved",
+            "lost-reopened-for-reproduction",
+            "superseded"
+          ]
+        },
+        "incident_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "disposition_record": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reproduction_spec": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "historical_approval_retained": {
+          "type": "boolean",
+          "description": "True when a prior approval remains on record as historical evidence and must not be rewritten to imply it never occurred."
+        },
+        "approval_transfers_to_replacement": {
+          "type": "boolean",
+          "description": "Must be false. A replacement requires its own verification and approval."
+        }
+      },
+      "additionalProperties": true
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false,
+  "schema_version": "0.3.0-rc1",
+  "version_history": [
+    {
+      "version": "0.2.0",
+      "date": "2026-10-17",
+      "note": "Initial Stage C asset schema (Stage C asset dependency map).",
+      "compatibility": "baseline - last ratified version",
+      "tests": "Stage C registry validation across production/*.yaml."
+    },
+    {
+      "version": "0.3.0-draft step 1",
+      "date": "2026-10-17",
+      "note": "Added optional approved_date, approved_by, approved_media, candidate_media, garment_spec_lock, calibrated_heuristic, test_references so promoted media could be registered with hash anchors.",
+      "compatibility": "minor vs 0.2.0 - additions only, all optional",
+      "tests": "51/51 asset-registry entries validated."
+    },
+    {
+      "version": "0.3.0-draft step 2",
+      "date": "2026-10-17",
+      "note": "Hardened media references: required id/delivery_status/storage_status/sha256; sha256 pattern; storage_status enum; sha256_history and superseded_by; derivative_of and transformation; durable_uri, present, byte_length; additionalProperties false; APPROVED ASSET conditional requiring approved_by/approved_date/decision_id; mirror rule forbidding approved_by on unapproved media; external-storage conditional; preservation-state coherence conditionals; DesignConstraintLock and VerificationRule separated by const authority_type; schema_version and version_history added.",
+      "compatibility": "minor vs 0.2.0 - assessed against the last RATIFIED version, since 0.3.0-draft was never in force. Newly added required fields apply only to newly added media-reference structures; no 0.2.0-valid record became invalid.",
+      "tests": "schemas/tests/test-asset-schema.py: 21 checks, 0 failed (A1 backward compat over 51 entries, B1-B14 negative, C1-C6 positive, D1-D2 residual-risk probes)."
+    },
+    {
+      "version": "0.3.0-rc1",
+      "date": "2026-10-17",
+      "note": "R-1: mandatory derivative provenance via a required 'lineage' discriminator (original | derivative); a derivative must name derivative_of and transformation, an original must declare none. R-6: explicit semantic versioning policy for the schema contract, version_history entries now require version, date, note, compatibility and tests, and schema versioning is declared distinct from asset versioning. Added optional media_disposition block so a lost medium can be dispositioned without rewriting its prior approval.",
+      "compatibility": "minor vs 0.2.0 - 'lineage' is required but applies only to media-reference structures introduced in this same unratified line, so no record that was valid under the last RATIFIED version (0.2.0) becomes invalid. Assessed against 0.2.0, not against the draft.",
+      "tests": "schemas/tests/test-asset-schema.py: 31 checks, 0 failed (backward compat, B1-B18 negative incl. R-1 provenance cases, C1-C9 positive, D1-D2 residual risk, E1-E2 versioning policy)."
+    }
+  ],
+  "versioning_policy": {
+    "applies_to": "schemas/asset.schema.json — the SCHEMA CONTRACT ONLY",
+    "scheme": "semantic versioning: MAJOR.MINOR.PATCH, with an optional -draft / -rcN pre-release suffix",
+    "patch": "Documentation or corrections that do not change validation behaviour. No new or removed constraints.",
+    "minor": "Backward-compatible additions that existing valid records can tolerate — new optional properties, new enum members where they widen, new conditionals that only constrain newly added fields.",
+    "major": "Breaking changes: new or removed mandatory fields that invalidate previously valid records, removed properties, narrowed types or enums, or a changed MEANING of an existing field.",
+    "compatibility_baseline": "Backward compatibility is assessed against the last RATIFIED version, not against an unratified draft. A draft or release candidate was never in force, so tightening it does not constitute a major change.",
+    "distinct_from_asset_versioning": "Schema versioning is separate from asset versioning. Changing the schema does not mean an approved image changed; changing an image does not mean the schema changed. Every asset carries its own 'version' field, which is unrelated to the schema's schema_version.",
+    "required_record_per_change": "Every schema change must record: version, date, rationale, compatibility assessment, and the tests performed.",
+    "ratification": "A version becomes canonical only on Human Creative Authority ratification. Pre-release suffixes (-draft, -rcN) mark versions that validate but are not yet canonical."
+  },
+  "ratification_status": {
+    "state": "release-candidate",
+    "blocking_requirements": {
+      "R-1": {
+        "status": "resolved",
+        "resolved_on": "2026-10-17"
+      },
+      "R-6": {
+        "status": "resolved",
+        "resolved_on": "2026-10-17"
+      }
+    },
+    "ratified_by": null,
+    "ratified_date": null,
+    "note": "R-1 and R-6 are implemented. Ratification remains with the Human Creative Authority and is not self-granted.",
+    "checksum_manifest": "schemas/asset.schema.sha256",
+    "process_controls": "schemas/PROCESS-CONTROLS-001.md",
+    "review_record": "schemas/SCHEMA-REVIEW-001-asset-schema.md"
+  }
 }

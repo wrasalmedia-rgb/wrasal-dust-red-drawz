@@ -1,11 +1,67 @@
-prop_id: prop-001
-name: TBD
-prop_type: generic
-status: proposed
-canonical_status: proposed
-summary: Placeholder prop record.
-notion_ref: prop-001
-created_at: 2026-10-17T00:00:00Z
-updated_at: 2026-10-17T00:00:00Z
+version: "0.2.0"
+project: "WRASAL DUST: THE RED DRAWZ"
+case: "Case 001: The Nine-Day Threshold"
+status: "in-build"
+governance_status: "IN BUILD"
+props:
+  - id: "prop-red-drawz-001"
+    id_origin: "PROPOSED"
+    name: "The Red Drawz (Primary Red Garment Evidence Artifact)"
+    status: "garment-spec-locked"
+    governance_status: "GARMENT SPEC LOCKED (decision-008 / H-05) — CANDIDATE RENDERS AWAITING HUMAN REVIEW"
+    canon_status: "canon-central-artifact-material-lock"
+    approval_status: "spec-locked-pending-render-approval"
+    material_rules: "Materially red dyed textile (visible fiber weave, seam construction, waistband/stitching geometry, natural gravity and fold weight). Must read as red by intrinsic fabric dye under neutral/warm practical light — NEVER via red lighting wash."
+    narrative_constraints: "Exact function and procedure within the Nine-Day Threshold are unresolved in canon and must not be turned into fake real-world Jamaican ritual instructions."
+    garment_spec_lock:
+      decision_id: "decision-008"
+      human_decision_token: "H-05 / unbranded_matte_crimson"
+      locked_date: "2026-10-17"
+      garment_type: "Heavyweight cotton undergarment (brief/trunk construction)"
+      branding: "STRICTLY UNBRANDED — zero logos, zero wordmarks, zero printed graphics, zero visible brand tags, zero designer labels"
+      surface_finish: "Matte (never satin, glossy, metallic, or sheen-treated)"
+      dye_value: "Crimson / oxblood"
+      fabric: "Heavyweight cotton, knitted jersey wales visible at 100mm macro"
+      construction: "Double-needle flatlock seams; plain tonal elastic waistband; natural gravity-driven fold weight"
+      hard_blockers:
+        - "Any logo, text, or commercial branding on the garment"
+        - "Satin, glossy, or metallic fabric finish"
+        - "Red lighting wash, red gel, or red bounce used to create the red value"
+        - "Glowing fibers, supernatural emission, or talisman treatment"
+    reconciliation_note: "Distinct from Linear commercial garment project RED DRAWZ — Pre-production v2.2 (STYLE 001 — Oxblood Trunk) unless human authority explicitly links or separates their visual specification. Per decision-008 the two remain UNLINKED. The narrative artifact in Case 001 must stay unbranded even if a future commercial-spec linkage is authorised."
+    dependencies:
+      - "decision-006"
+      - "decision-007"
+      - "decision-008"
+    test_references:
+      - "verification/tests/TEST-DUST-C001-001/frame-b-shot-open-003-run-02.png"
+      - "verification/tests/TEST-DUST-C001-001/frame-c-shot-open-004-run-02.png"
+    notes: "Anchor prop for Opening Sequence and First Production Test (TEST-DUST-C001-001). Garment specification locked by Human Creative Authority 2026-10-17 (decision-008 / H-05). run-02 renders are TESTED — AWAITING HUMAN REVIEW; no render has yet been promoted to APPROVED ASSET."
 
-# Track prop purpose, origin, visual identity, and continuity significance here.
+  - id: "prop-grant-threshold-watch-001"
+    id_origin: "PROPOSED"
+    name: "Threshold Timepiece / Practical Clock (3:17 AM Boundary Marker)"
+    status: "proposed"
+    governance_status: "PROPOSED"
+    canon_status: "proposed-pending-props-register"
+    approval_status: "pending-human-approval"
+    material_rules: "Grounded domestic timepiece or bedside/wall clock in Harlem residence; no glowing HUD or supernatural glyph."
+    narrative_constraints: "Supports temporal tracking across the Nine-Day Threshold and 3:17 AM boundary (informed by Notion record 02 DUST / The Boundary at 3:17 AM)."
+    dependencies:
+      - "decision-001"
+      - "loc-grant-residence-001"
+    notes: "Provisional prop pending inspection of Notion Props, Evidence & Artifact Register."
+
+  - id: "prop-evidence-container-001"
+    id_origin: "PROPOSED"
+    name: "Garment Storage / Intake Container (Domestic Drawer or Evidence Surface)"
+    status: "proposed"
+    governance_status: "PROPOSED"
+    canon_status: "proposed-pending-props-register"
+    approval_status: "pending-human-approval"
+    material_rules: "Physical wood, paper, or linen surface providing neutral tonal contrast (charcoal/walnut/unbleached paper) against prop-red-drawz-001."
+    narrative_constraints: "Allows the red garment to be revealed and inspected with forensic restraint without inventing ritual altars."
+    dependencies:
+      - "prop-red-drawz-001"
+      - "loc-grant-residence-001"
+    notes: "Used in Opening Sequence Beat 3 and First Production Test (TEST-DUST-C001-001)."

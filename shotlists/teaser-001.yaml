@@ -1,12 +1,28 @@
-shot_id: shot-001
-title: Teaser opening beat
-status: proposed
-scene_reference: teaser-scene-001
-camera_reference: wide-establishing-shot
-location_id: loc-001
-character_ids: [char-001]
-prompt_id: prompt-001
-continuity_notes: pending review
-verification_status: not-started
-created_at: 2026-10-17T00:00:00Z
-updated_at: 2026-10-17T00:00:00Z
+version: "0.2.0"
+sequence: "teaser-001-provisional"
+title: "PROVISIONAL TEASER CONCEPT MANIFEST — Official Teaser Trailer Concept 001"
+status: "reference-needed"
+governance_status: "REFERENCE NEEDED"
+missing_source_records:
+  - "Official Teaser Trailer Concept 001 (Notion — not shared with integration)"
+shots:
+  - shot_id: "shot-teaser-001"
+    scene_id: "teaser-scene-001"
+    scene_beat: "Teaser Beat 01 — Harlem 3:17 AM Threshold Establishing"
+    dramatic_purpose: "Anchor the teaser in Harlem, New York City, 2026 nocturnal reality before introducing the red garment artifact."
+    characters_present: []
+    location_id: "loc-harlem-ext-001"
+    wardrobe_ids: []
+    prop_ids: []
+    shot_size: "Wide Establishing Shot (WS)"
+    camera_angle: "Eye-level street perspective, true verticals"
+    lens_feel: "35mm medium-format equivalent, f/5.6"
+    movement: "Locked tripod"
+    lighting_motivation: "Motivated Harlem streetlamp and brownstone vestibule practical light"
+    color_material_note: "Damp Harlem masonry and ironwork; zero red light wash"
+    sound_cue: "sound-amb-harlem-night-001"
+    continuity_in: "Cold open from black"
+    continuity_out: "Cuts to interior macro insert of prop-red-drawz-001"
+    verification_target: "Blocked on Notion page Official Teaser Trailer Concept 001 for exact teaser beat order; Harlem 2026 lock enforced."
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"

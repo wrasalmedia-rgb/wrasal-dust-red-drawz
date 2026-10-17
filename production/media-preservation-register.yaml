@@ -1,0 +1,540 @@
+version: "0.2.0"
+schema: "production/media-preservation-register"
+policy: "production/media-preservation-policy.md"
+case: "Case 001: The Nine-Day Threshold"
+established: "2026-10-17"
+last_verified: "2026-10-17T00:00:00Z"
+verified_by: "production-architect"
+
+storage_backend:
+  preferred: "git-lfs"
+  preferred_verified: false
+  preferred_verification_date: "2026-10-17"
+  preferred_verification_result: "NOT VERIFIED - client not installed and not installable (no root); no .gitattributes; LFS object-storage hosts (media/cloud/objects.githubusercontent.com) return HTTP 000 while api.github.com returns HTTP 200. See media-preservation-policy.md section 3.2."
+  active: "designated-durable-artifact-store"
+  active_stores:
+    - path: "production/media/**"
+      holds: "APPROVED ASSET masters and approved derivatives"
+      gitignore_exempt: true
+    - path: "verification/tests/**"
+      holds: "generated candidates, tested frames, and derivatives"
+      gitignore_exempt: true
+  gitignore_exemption_verified: true
+  gitignore_exemption_evidence: "git check-ignore -v reports NOT IGNORED for media inside both trees; control file scratch/throwaway.png still reports ignored by .gitignore:4:*.png."
+
+storage_status_vocabulary:
+  preserved_retrievable: "File is present in the designated store and its SHA-256 re-verifies on retrieval."
+  recorded_only: "Metadata is recorded but no file is held in the designated store. Retrieval is NOT possible."
+  preservation_incident: "A file that should have been preserved is absent and has not been recovered. See the linked incident record."
+
+# ===========================================================================
+# MEDIA ENTRIES
+# ===========================================================================
+media:
+
+  # ------------------------------------------------------------------ Frame A
+  - asset_id: "img-harlem-ext-001-open-001-master"
+    lineage: "original"
+    stable_asset_id: "img-harlem-ext-001-open-001-master"
+    shot_id: "shot-open-001"
+    run_id: "run-01"
+    asset_ref: "loc-harlem-ext-001"
+    delivery_status: "APPROVED ASSET"
+    storage_status: "preservation-incident"
+    file:
+      canonical_path: "production/media/case-001/shot-open-001/run-01/frame-a-shot-open-001-run-01-master.png"
+      last_known_path: "verification/tests/TEST-DUST-C001-001/frame-a-shot-open-001-run-01.png"
+      durable_uri: null
+      present: false
+    integrity:
+      sha256: "a2524d1d71f0a4c7931dc237f7a104f128714864d404c102b87653e719d6204e"
+      dimensions: "1403x1121"
+      format: "PNG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: "prompt-img-open-001"
+      prompt_version: "v0.2.0-cal-01"
+      generation_tool: "generate_image"
+      generation_parameters: "offer_options: false; images: omitted (text-to-image)"
+      source_media_ids: []
+      run_metadata: "TEST-DUST-C001-001 Phase 1 / run-01, executed 2026-10-17"
+    derivative_relationship:
+      role: "master"
+      derivative_of: null
+      transformation: null
+      derivatives:
+        - "img-harlem-ext-001-open-001-crop185"
+    governance:
+      verification_record: "verif-test-001-frame-a-run-01"
+      human_decision: "approve_with_185_crop"
+      decision_id: "decision-009"
+      approved_by: "human-creative-authority"
+      approved_date: "2026-10-17"
+    preservation_incident:
+      incident_id: "INC-2026-10-17-001"
+      incident_record: "verification/tests/TEST-DUST-C001-001/preservation-incident-001.md"
+    notes: >-
+      APPROVED ASSET whose recorded approval and checksum both survive while the pixels do not.
+      The approval record is valid; the medium is not preserved. Recovery attempted 2026-10-17 and failed.
+      This entry is the standing evidence that approval does not imply availability.
+
+  - asset_id: "img-harlem-ext-001-open-001-crop185"
+    lineage: "derivative"
+    stable_asset_id: "img-harlem-ext-001-open-001-crop185"
+    shot_id: "shot-open-001"
+    run_id: "run-01"
+    asset_ref: "loc-harlem-ext-001"
+    delivery_status: "APPROVED ASSET"
+    storage_status: "preservation-incident"
+    file:
+      canonical_path: "production/media/case-001/shot-open-001/run-01/frame-a-shot-open-001-run-01-crop-185.png"
+      last_known_path: "verification/tests/TEST-DUST-C001-001/frame-a-shot-open-001-run-01-crop-185.png"
+      durable_uri: null
+      present: false
+    integrity:
+      sha256: "34d3c436fb6221ed6e87a374dce0e06fc7af8de670110f7d462bced6c36af327"
+      dimensions: "1403x758"
+      format: "PNG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: "prompt-img-open-001"
+      prompt_version: "v0.2.0-cal-01"
+      generation_tool: "ImageMagick 6.9.11-60"
+      generation_parameters: "convert <master> -crop 1403x758+0+130 +repage <out>"
+      source_media_ids:
+        - "img-harlem-ext-001-open-001-master"
+      run_metadata: "Derived deterministically from the run-01 master on 2026-10-17"
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-harlem-ext-001-open-001-master"
+      transformation: "convert -crop 1403x758+0+130 +repage"
+      aspect_ratio: "1.85:1"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-a-run-01"
+      human_decision: "approve_with_185_crop"
+      decision_id: "decision-009"
+      approved_by: "human-creative-authority"
+      approved_date: "2026-10-17"
+    preservation_incident:
+      incident_id: "INC-2026-10-17-001"
+      incident_record: "verification/tests/TEST-DUST-C001-001/preservation-incident-001.md"
+    notes: >-
+      Deterministic derivative. Because the transformation is exact, this crop is byte-for-byte
+      regenerable from its master IF the master is ever recovered. Until then both are absent.
+      Regenerating a visually similar master and re-cropping it would produce a NEW medium with a
+      NEW identity - it would not be this approved asset.
+
+  # ------------------------------------------------------------------ Frame B
+  - asset_id: "img-red-drawz-001-open-003-run-01"
+    lineage: "original"
+    stable_asset_id: "img-red-drawz-001-open-003-run-01"
+    shot_id: "shot-open-003"
+    run_id: "run-01"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "NEEDS REVISION"
+    storage_status: "preservation-incident"
+    file:
+      canonical_path: "production/media/case-001/shot-open-003/run-01/frame-b-shot-open-003-run-01.png"
+      last_known_path: "verification/tests/TEST-DUST-C001-001/frame-b-shot-open-003-run-01.png"
+      durable_uri: null
+      present: false
+    integrity:
+      sha256: "2887994cbcc18ccd9ce38d8be5e80c31e2abcc562129a4ddf3eaf40b9181f419"
+      dimensions: "1402x1122"
+      format: "PNG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: "prompt-img-open-003"
+      prompt_version: "v0.2.0-cal-01"
+      generation_tool: "generate_image"
+      generation_parameters: "offer_options: false; images: omitted (text-to-image)"
+      source_media_ids: []
+      run_metadata: "TEST-DUST-C001-001 Phase 1 / run-01"
+    derivative_relationship:
+      role: "master"
+      derivative_of: null
+      transformation: null
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-b-run-01"
+      human_decision: "execute_run_02_bc"
+      decision_id: null
+      approved_by: null
+      approved_date: null
+    preservation_incident:
+      incident_id: "INC-2026-10-17-001"
+      incident_record: "verification/tests/TEST-DUST-C001-001/preservation-incident-001.md"
+    notes: >-
+      Retained as the calibration evidence basis for decision-010 (the occluded walnut control
+      region B9). Its measurements survive in color-measurements.json; its pixels do not.
+      Lost before the durable store existed.
+
+  - asset_id: "img-red-drawz-001-open-003-run-02"
+    lineage: "original"
+    stable_asset_id: "img-red-drawz-001-open-003-run-02"
+    shot_id: "shot-open-003"
+    run_id: "run-02"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "TESTED - AWAITING HUMAN REVIEW"
+    storage_status: "preserved-retrievable"
+    file:
+      canonical_path: "verification/tests/TEST-DUST-C001-001/frame-b-shot-open-003-run-02.png"
+      promotion_path: "production/media/case-001/shot-open-003/run-02/frame-b-shot-open-003-run-02.png"
+      durable_uri: null
+      present: true
+      byte_length: 2570609
+    integrity:
+      sha256: "ca0ac612e0d00be0ad55f7ff35d37d1d37b078b3097ed3f7c94cdaf5cbcd4cbf"
+      sha256_reverified: "2026-10-17T00:00:00Z"
+      sha256_reverified_value: "ca0ac612e0d00be0ad55f7ff35d37d1d37b078b3097ed3f7c94cdaf5cbcd4cbf"
+      sha256_match: true
+      dimensions: "1402x1122"
+      format: "PNG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: "prompt-img-open-003"
+      prompt_version: "v0.2.0-cal-01-run-02"
+      generation_tool: "generate_image"
+      generation_parameters: "offer_options: false; images: omitted - the run-01 reference PNG was no longer on disk, so this is a prompt-driven render following directives R-01..R-05, NOT a conditioned edit of run-01"
+      source_media_ids: []
+      run_metadata: "TEST-DUST-C001-001 Phase 1 / run-02, executed 2026-10-17 under Human Decision execute_run_02_bc"
+      prompt_text_recorded: "verification/tests/TEST-DUST-C001-001/execution-report-001.md (Stage 9.6)"
+    derivative_relationship:
+      role: "master"
+      derivative_of: null
+      transformation: null
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-b-run-02"
+      human_decision: null
+      decision_id: null
+      approved_by: null
+      approved_date: null
+      visual_review_status: "NOT YET PERFORMED - deferred to Human Creative Authority"
+    notes: >-
+      First medium held under this policy. Checksum re-verified on 2026-10-17 and matches the value
+      recorded at generation time. Not an approved asset; promotion to production/media/ occurs only
+      on human approval.
+
+  # ------------------------------------------------------------------ Frame C
+  - asset_id: "img-red-drawz-001-open-004-run-01"
+    lineage: "derivative"
+    stable_asset_id: "img-red-drawz-001-open-004-run-01"
+    shot_id: "shot-open-004"
+    run_id: "run-01"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "NEEDS REVISION"
+    storage_status: "preservation-incident"
+    file:
+      canonical_path: "production/media/case-001/shot-open-004/run-01/frame-c-shot-open-004-run-01.png"
+      last_known_path: "verification/tests/TEST-DUST-C001-001/frame-c-shot-open-004-run-01.png"
+      durable_uri: null
+      present: false
+    integrity:
+      sha256: "58fd3d34555ba6eace28b9475cfb2698a03fb4d9d691082cd60caa98bceeb619"
+      dimensions: "1152x922"
+      format: "PNG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: "prompt-img-open-004"
+      prompt_version: "v0.2.0-cal-01"
+      generation_tool: "generate_image"
+      generation_parameters: "offer_options: false; images: [frame-b-shot-open-003-run-01.png]"
+      source_media_ids:
+        - "img-red-drawz-001-open-003-run-01"
+      run_metadata: "TEST-DUST-C001-001 Phase 1 / run-01"
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-red-drawz-001-open-003-run-01"
+      transformation: "reference-conditioned 100mm macro f/11 generation pass at 30-degree raking angle"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-c-run-01"
+      human_decision: "execute_run_02_bc"
+      decision_id: null
+      approved_by: null
+      approved_date: null
+    preservation_incident:
+      incident_id: "INC-2026-10-17-001"
+      incident_record: "verification/tests/TEST-DUST-C001-001/preservation-incident-001.md"
+    notes: "Lost before the durable store existed. Measurements survive in color-measurements.json."
+
+  - asset_id: "img-red-drawz-001-open-004-run-02"
+    lineage: "derivative"
+    stable_asset_id: "img-red-drawz-001-open-004-run-02"
+    shot_id: "shot-open-004"
+    run_id: "run-02"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "TESTED - AWAITING HUMAN REVIEW"
+    storage_status: "preserved-retrievable"
+    file:
+      canonical_path: "verification/tests/TEST-DUST-C001-001/frame-c-shot-open-004-run-02.png"
+      promotion_path: "production/media/case-001/shot-open-004/run-02/frame-c-shot-open-004-run-02.png"
+      durable_uri: null
+      present: true
+      byte_length: 2391623
+    integrity:
+      sha256: "e8bee9b5d10b69d8ffd78d1b41802738b0deb60a43660bf5b5dcdfa90a8434cb"
+      sha256_reverified: "2026-10-17T00:00:00Z"
+      sha256_reverified_value: "e8bee9b5d10b69d8ffd78d1b41802738b0deb60a43660bf5b5dcdfa90a8434cb"
+      sha256_match: true
+      dimensions: "1152x922"
+      format: "PNG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: "prompt-img-open-004"
+      prompt_version: "v0.2.0-cal-01-run-02"
+      generation_tool: "generate_image"
+      generation_parameters: "offer_options: false; images: [frame-b-shot-open-003-run-02.png] - reference-conditioned on the run-02 anchor"
+      source_media_ids:
+        - "img-red-drawz-001-open-003-run-02"
+      run_metadata: "TEST-DUST-C001-001 Phase 1 / run-02, executed 2026-10-17 under Human Decision execute_run_02_bc"
+      prompt_text_recorded: "verification/tests/TEST-DUST-C001-001/execution-report-001.md (Stage 9.6)"
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-red-drawz-001-open-003-run-02"
+      transformation: "reference-conditioned 100mm macro f/11 generation pass at 30-degree raking angle"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-c-run-02"
+      human_decision: null
+      decision_id: null
+      approved_by: null
+      approved_date: null
+      visual_review_status: "NOT YET PERFORMED - deferred to Human Creative Authority"
+    notes: >-
+      Checksum re-verified on 2026-10-17 and matches the value recorded at generation time.
+      Its reference-conditioning source (the Frame B run-02 master) is preserved-retrievable,
+      so this pass is reproducible in lineage terms even though the generator is not bit-deterministic.
+
+  - asset_id: "img-red-drawz-001-open-003-run-02-review-1024"
+    lineage: "derivative"
+    shot_id: "shot-open-003"
+    run_id: "run-02-review"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "TESTED - AWAITING HUMAN REVIEW"
+    storage_status: "preserved-retrievable"
+    file:
+      canonical_path: "verification/tests/TEST-DUST-C001-001/frame-b-shot-open-003-run-02-review-1024.jpg"
+      durable_uri: null
+      present: true
+      byte_length: 105389
+    integrity:
+      sha256: "be04baa3b28742642aeef3bb1b69af18fe64e5134c641836f8586836d2d2ddef"
+      dimensions: "1024x819"
+      format: "JPEG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: null
+      prompt_version: null
+      generation_tool: "ImageMagick 6.9.11-60"
+      generation_parameters: "convert <master> -resize 1024x -quality 88 -strip <out>"
+      source_media_ids:
+        - "img-red-drawz-001-open-003-run-02"
+      run_metadata: "Downscaled review copy created 2026-10-17 solely to make the run-02 frames attachable for human visual review. Not a production deliverable."
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-red-drawz-001-open-003-run-02"
+      transformation: "convert <master> -resize 1024x -quality 88 -strip <out>"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-b-run-02"
+      human_decision: null
+      decision_id: null
+      approved_by: null
+      approved_date: null
+      visual_review_status: "NOT YET PERFORMED - deferred to Human Creative Authority"
+    notes: >-
+      Review surrogate, not a deliverable. Created because the full-resolution PNG masters (2.4-2.6 MB) did not
+      reach the reviewing authority as inspectable images. Pixels are a downscaled re-encode of the master;
+      the master remains the object of record for all measurement and any future approval.
+
+  - asset_id: "img-red-drawz-001-open-004-run-02-review-1024"
+    lineage: "derivative"
+    shot_id: "shot-open-004"
+    run_id: "run-02-review"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "TESTED - AWAITING HUMAN REVIEW"
+    storage_status: "preserved-retrievable"
+    file:
+      canonical_path: "verification/tests/TEST-DUST-C001-001/frame-c-shot-open-004-run-02-review-1024.jpg"
+      durable_uri: null
+      present: true
+      byte_length: 164910
+    integrity:
+      sha256: "09c07873d2d19d2f56a11c42f989a4b8f45a71526eb22d3f3a6ccbbb9b24f232"
+      dimensions: "1024x820"
+      format: "JPEG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: null
+      prompt_version: null
+      generation_tool: "ImageMagick 6.9.11-60"
+      generation_parameters: "convert <master> -resize 1024x -quality 88 -strip <out>"
+      source_media_ids:
+        - "img-red-drawz-001-open-004-run-02"
+      run_metadata: "Downscaled review copy created 2026-10-17 solely to make the run-02 frames attachable for human visual review. Not a production deliverable."
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-red-drawz-001-open-004-run-02"
+      transformation: "convert <master> -resize 1024x -quality 88 -strip <out>"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-c-run-02"
+      human_decision: null
+      decision_id: null
+      approved_by: null
+      approved_date: null
+      visual_review_status: "NOT YET PERFORMED - deferred to Human Creative Authority"
+    notes: >-
+      Review surrogate, not a deliverable. Created because the full-resolution PNG masters (2.4-2.6 MB) did not
+      reach the reviewing authority as inspectable images. Pixels are a downscaled re-encode of the master;
+      the master remains the object of record for all measurement and any future approval.
+# ===========================================================================
+  - asset_id: "img-red-drawz-001-open-003-run-02-review-full"
+    lineage: "derivative"
+    shot_id: "shot-open-003"
+    run_id: "run-02-review"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "TESTED - AWAITING HUMAN REVIEW"
+    storage_status: "preserved-retrievable"
+    file:
+      canonical_path: "verification/tests/TEST-DUST-C001-001/visual-review/frame-b-full.jpg"
+      durable_uri: null
+      present: true
+      byte_length: 127796
+    integrity:
+      sha256: "9c1c642913fd7a7c6961c08349d9b8d7519e5384c669eba0a763a0bb14eea026"
+      dimensions: "1402x1122"
+      format: "JPEG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: null
+      prompt_version: null
+      generation_tool: "ImageMagick 6.9.11-60"
+      generation_parameters: "convert <master> -quality 80 -strip <out>"
+      source_media_ids:
+        - "img-red-drawz-001-open-003-run-02"
+      run_metadata: "Full-resolution JPEG review copy created 2026-10-17 for the self-contained HTML gallery. Not a production deliverable."
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-red-drawz-001-open-003-run-02"
+      transformation: "convert <master> -quality 80 -strip <out>"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-b-run-02"
+      human_decision: null
+      decision_id: null
+      approved_by: null
+      approved_date: null
+      visual_review_status: "NOT YET PERFORMED - deferred to Human Creative Authority"
+    notes: >-
+      Full-resolution JPEG review surrogate embedded in the self-contained HTML gallery frames-embedded.html. Created because neither the PNG masters nor the 1024 px surrogates reached the reviewing authority as inspectable images. Same pixel dimensions as the master, lossy re-encode only. The PNG master remains the object of record for all measurement and any future approval.
+
+  - asset_id: "img-red-drawz-001-open-004-run-02-review-full"
+    lineage: "derivative"
+    shot_id: "shot-open-004"
+    run_id: "run-02-review"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "TESTED - AWAITING HUMAN REVIEW"
+    storage_status: "preserved-retrievable"
+    file:
+      canonical_path: "verification/tests/TEST-DUST-C001-001/visual-review/frame-c-full.jpg"
+      durable_uri: null
+      present: true
+      byte_length: 147341
+    integrity:
+      sha256: "904a33e679f7094abd912671a6f1ddb806b745deced6b1cff131ce9d46b48e6f"
+      dimensions: "1152x922"
+      format: "JPEG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: null
+      prompt_version: null
+      generation_tool: "ImageMagick 6.9.11-60"
+      generation_parameters: "convert <master> -quality 80 -strip <out>"
+      source_media_ids:
+        - "img-red-drawz-001-open-004-run-02"
+      run_metadata: "Full-resolution JPEG review copy created 2026-10-17 for the self-contained HTML gallery. Not a production deliverable."
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-red-drawz-001-open-004-run-02"
+      transformation: "convert <master> -quality 80 -strip <out>"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-c-run-02"
+      human_decision: null
+      decision_id: null
+      approved_by: null
+      approved_date: null
+      visual_review_status: "NOT YET PERFORMED - deferred to Human Creative Authority"
+    notes: >-
+      Full-resolution JPEG review surrogate embedded in the self-contained HTML gallery frames-embedded.html. Created because neither the PNG masters nor the 1024 px surrogates reached the reviewing authority as inspectable images. Same pixel dimensions as the master, lossy re-encode only. The PNG master remains the object of record for all measurement and any future approval.
+
+  - asset_id: "img-red-drawz-001-open-003-run-02-probe-420"
+    lineage: "derivative"
+    shot_id: "shot-open-003"
+    run_id: "run-02-review"
+    asset_ref: "prop-red-drawz-001"
+    delivery_status: "TESTED - AWAITING HUMAN REVIEW"
+    storage_status: "preserved-retrievable"
+    file:
+      canonical_path: "verification/tests/TEST-DUST-C001-001/visual-review/probe.jpg"
+      durable_uri: null
+      present: true
+      byte_length: 8198
+    integrity:
+      sha256: "ff2e12bb3593c348b97bad2c3308711eb3ba58f4f669484cda01add4d59b069e"
+      dimensions: "420x336"
+      format: "JPEG"
+      colorspace: "sRGB"
+    provenance:
+      prompt_id: null
+      prompt_version: null
+      generation_tool: "ImageMagick 6.9.11-60"
+      generation_parameters: "convert <master> -resize 420x -quality 62 -strip <out>"
+      source_media_ids:
+        - "img-red-drawz-001-open-003-run-02"
+      run_metadata: "Delivery-boundary diagnostic created 2026-10-17. Not media for review; exists only to test whether an embedded image can reach the reviewing authority."
+    derivative_relationship:
+      role: "derivative"
+      derivative_of: "img-red-drawz-001-open-003-run-02"
+      transformation: "convert <master> -resize 420x -quality 62 -strip <out>"
+      derivatives: []
+    governance:
+      verification_record: "verif-test-001-frame-b-run-02"
+      human_decision: null
+      decision_id: null
+      approved_by: null
+      approved_date: null
+      visual_review_status: "NOT APPLICABLE - diagnostic probe, not review media"
+    notes: >-
+      Diagnostic artifact, not review media. Created to bracket the delivery boundary after the 376 KB
+      self-contained gallery could not be confirmed as received. Too small and too low-resolution to
+      support any of the six visual assessments. The PNG master remains the object of record.
+
+# INCIDENTS
+# ===========================================================================
+preservation_incidents:
+  - incident_id: "INC-2026-10-17-001"
+    record: "verification/tests/TEST-DUST-C001-001/preservation-incident-001.md"
+    opened: "2026-10-17"
+    severity: "production-blocker"
+    affected_media:
+      - "img-harlem-ext-001-open-001-master"
+      - "img-harlem-ext-001-open-001-crop185"
+      - "img-red-drawz-001-open-003-run-01"
+      - "img-red-drawz-001-open-004-run-01"
+    status: "OPEN - recovery failed, awaiting Human Creative Authority disposition"
+
+# ===========================================================================
+# BLOCKER STATE
+# ===========================================================================
+blocker_state:
+  blocking: true
+  reason: >-
+    One APPROVED ASSET medium (img-harlem-ext-001-open-001-master) and its approved derivative
+    are absent from durable storage. Per media-preservation-policy.md section 6, media preservation
+    is a production blocker until every APPROVED ASSET medium reads preserved-retrievable.
+  cleared_when: "Every media entry with delivery_status 'APPROVED ASSET' has storage_status 'preserved-retrievable' and a re-verified SHA-256."

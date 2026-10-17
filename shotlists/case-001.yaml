@@ -1,12 +1,152 @@
-shot_id: shot-002
-title: Case entry beat
-status: proposed
-scene_reference: case-scene-001
-camera_reference: medium-close-shot
-location_id: loc-002
-character_ids: [char-002]
-prompt_id: prompt-002
-continuity_notes: pending review
-verification_status: not-started
-created_at: 2026-10-17T00:00:00Z
-updated_at: 2026-10-17T00:00:00Z
+version: "0.2.0"
+sequence: "case-001-opening-sequence-provisional"
+title: "PROVISIONAL OPENING SEQUENCE PLAN — Case 001: The Nine-Day Threshold (Harlem, NYC, 2026)"
+status: "proposed"
+governance_status: "PROPOSED"
+missing_source_records:
+  - "Chronological Plot & WraySpeak (Notion — not shared with integration)"
+  - "DUST-C001 Asset Production Registry & Prompt System (Notion — not shared with integration)"
+  - "Prompt Library, Shot Specs & Generation Protocol (Notion — not shared with integration)"
+  - "Official Teaser Trailer Concept 001 (Notion — not shared with integration)"
+  - "Case 001 Full Screenplay (Not found in Notion, GitHub, Linear, or Google Drive)"
+shots:
+  - shot_id: "shot-open-001"
+    scene_id: "scene-001"
+    scene_beat: "Scene 01 / Beat 01 — Geography Before Spectacle (Harlem 3:17 AM Threshold)"
+    dramatic_purpose: "Establish grounded contemporary Harlem, NYC, 2026 nocturnal geography and architectural silence before any interior grief or supernatural premise appears."
+    characters_present: []
+    location_id: "loc-harlem-ext-001"
+    wardrobe_ids: []
+    prop_ids: []
+    shot_size: "Wide Establishing Shot (WS)"
+    camera_angle: "Eye-level street perspective (5 ft 4 in height), level horizon, true architectural verticals"
+    lens_feel: "35mm medium-format equivalent, f/5.6, deep observational focus"
+    movement: "Locked tripod (zero pan/tilt; only micro-movement of mist and wet asphalt reflection)"
+    lighting_motivation: "Controlled low-key practical NYC streetlamp (4200K cool-amber LED) and recessed brownstone vestibule bulb (2900K warm); deep natural sky falloff (#0A0A0C)."
+    color_material_note: "Wet Harlem limestone/brick facade, matte black painted iron stoop railing, damp slate pavement; strictly zero red lighting or neon tint."
+    sound_cue: "sound-amb-harlem-night-001 (sparse 3:17 AM Harlem air, distant avenue hum, architectural stillness)"
+    continuity_in: "Opening black frame -> 3:17 AM Harlem street exterior; rain recently stopped; stoop dry under overhang, pavement damp."
+    continuity_out: "Vestibule inner door and ground-floor shuttered window establish light axis for interior cut to loc-grant-residence-001."
+    verification_target: "Verify 100% Harlem 2026 architectural authenticity (zero Jamaican flora/architecture); verify true verticals and controlled low-key shadow falloff."
+    status: "reopened-for-reproduction"
+    governance_status: "APPROVED (decision-009, historical) - MEDIA LOST; REOPENED FOR RE-PRODUCTION (DISPOSITION-001)"
+
+  - shot_id: "shot-open-002"
+    scene_id: "scene-001"
+    scene_beat: "Scene 01 / Beat 02 — Human Grief Before Supernatural Escalation (Mister Grant's Stillness)"
+    dramatic_purpose: "Introduce Mister Grant in the quiet domestic aftermath of a marriage that lasted less than two years — grounding the film in human bereavement prior to any anomalous event."
+    characters_present:
+      - "char-grant-001"
+    location_id: "loc-grant-residence-001"
+    wardrobe_ids:
+      - "wardrobe-grant-001"
+    prop_ids:
+      - "prop-grant-threshold-watch-001"
+    shot_size: "Medium Wide Shot (MWS)"
+    camera_angle: "Seated eye-level (4 ft 0 in), framed through hallway/bedroom doorway threshold for spatial depth"
+    lens_feel: "50mm neutral observational prime, f/5.6, natural human-eye perspective"
+    movement: "Static tripod hold (6 seconds; stillness carries the emotional weight)"
+    lighting_motivation: "Single shaded bedside/table tungsten practical (2800K) camera-left + cool 4800K Harlem streetlamp spill through window blinds camera-right (cool_edge_local_warm)."
+    color_material_note: "Warm walnut wood molding, charcoal shadow planes (#25262A), muted neutral cotton/wool domestic wardrobe on Grant; natural skin texture; zero red cast."
+    sound_cue: "sound-amb-grant-roomtone-001 (heavy brownstone interior room tone, faint mechanical clock tick, quiet breath)"
+    continuity_in: "Matches exterior window blind slat pattern and 3:17 AM lighting state from shot-open-001."
+    continuity_out: "Mister Grant's eye-line rests downward toward the partially closed dresser drawer/table surface camera-left."
+    verification_target: "BLOCKED on char-grant-001 Tier 00 reference; verify zero invented occupational props and non-melodramatic bereavement posture."
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+
+  - shot_id: "shot-open-003"
+    scene_id: "scene-001"
+    scene_beat: "Scene 01 / Beat 03 — Object Detail Before Explanation (The Drawer Threshold)"
+    dramatic_purpose: "Reveal the red garment (prop-red-drawz-001) resting inside a grounded domestic container before any lore or explanation is offered."
+    characters_present: []
+    location_id: "loc-grant-residence-001"
+    wardrobe_ids: []
+    prop_ids:
+      - "prop-red-drawz-001"
+      - "prop-evidence-container-001"
+    shot_size: "Medium Close-Up Insert (MCU Object)"
+    camera_angle: "High three-quarter observational angle (45 degrees downward, matching Grant's seated eye-line)"
+    lens_feel: "85mm prime, f/4, selective focus anchored on drawer front edge and folded red fabric"
+    movement: "Locked tripod (no camera movement)"
+    lighting_motivation: "Same 2800K warm domestic lamp grazing across the wood drawer edge and unbleached liner paper; deep neutral shadow inside drawer recess."
+    color_material_note: "prop-red-drawz-001 reads as deep crimson/oxblood dyed fabric solely through textile pigment; surrounding walnut wood and off-white paper liner remain 100% neutral/warm without red light bleed."
+    sound_cue: "sound-foley-garment-001 (subtle dry wood settling; unbroken room tone)"
+    continuity_in: "Matches Grant's downward eye-line and 2800K lamp direction from shot-open-002."
+    continuity_out: "Drawer open exactly 4.5 inches; folded geometry of prop-red-drawz-001 locked for macro cut in shot-open-004."
+    verification_target: "Verify chromatic isolation: RGB measurement on surrounding wood/paper confirms zero red lighting wash while garment reads unmistakably red."
+    status: "tested-awaiting-human-review"
+    governance_status: "TESTED — AWAITING HUMAN REVIEW (run-02)"
+
+  - shot_id: "shot-open-004"
+    scene_id: "scene-001"
+    scene_beat: "Scene 01 / Beat 04 — Material Reality of the Red Garment (Forensic Macro Insert)"
+    dramatic_purpose: "Establish the tactile, physical reality of the red garment as a real textile object rather than a supernatural glowing talisman, anchoring the Nine-Day Threshold in material fact."
+    characters_present: []
+    location_id: "loc-grant-residence-001"
+    wardrobe_ids: []
+    prop_ids:
+      - "prop-red-drawz-001"
+      - "prop-evidence-container-001"
+    shot_size: "Extreme Close-Up / Macro Insert (ECU)"
+    camera_angle: "Measured forensic raking angle (30 degrees to fabric plane)"
+    lens_feel: "100mm macro prime, f/11, high-acuity shallow depth of field across seam and fiber weave"
+    movement: "Imperceptible 4-second rack focus from foreground flatlock seam to fold shadow"
+    lighting_motivation: "Raking 2800K warm domestic practical key from camera-left revealing micro-topography of dyed cotton/wool fibers; negative fill camera-right."
+    color_material_note: "Visible yarn twist, stitch tension, dyed oxblood/crimson fiber absorption, and contact crease; zero emissive glow, zero wet blood cliché, zero red ambient light."
+    sound_cue: "sound-foley-garment-001 (barely audible dry fabric tension and room silence)"
+    continuity_in: "Exact fold geometry, stitch pattern, and light vector from shot-open-003."
+    continuity_out: "Holds on stillness before hard cut to exterior/vestibule arrival in shot-open-005."
+    verification_target: "Metadata Strip / Material Realism check: garment must be 100% legible as physical dyed cloth under normal light without any ritual symbols or glowing artifacts."
+    status: "tested-awaiting-human-review"
+    governance_status: "TESTED — AWAITING HUMAN REVIEW (run-02)"
+
+  - shot_id: "shot-open-005"
+    scene_id: "scene-002"
+    scene_beat: "Scene 02 / Beat 01 — The Apprentice at the Threshold (Wrasal's Arrival)"
+    dramatic_purpose: "Introduce Wrasal as an observant, composed apprentice arriving at the Harlem threshold — establishing human investigative presence without occult detective clichés."
+    characters_present:
+      - "char-wrasal-001"
+    location_id: "loc-harlem-ext-001"
+    wardrobe_ids:
+      - "wardrobe-wrasal-001"
+    prop_ids: []
+    shot_size: "Medium Close-Up (MCU)"
+    camera_angle: "Eye-level from inside vestibule glass looking out toward threshold step"
+    lens_feel: "85mm portrait prime, f/2.8, respectful portrait distance with Harlem vestibule frame in foreground"
+    movement: "Locked tripod; Wrasal pauses on top step, composed gaze registering the doorway"
+    lighting_motivation: "2900K vestibule overhead bulb providing warm key through glass + 4200K streetlamp cool edge on shoulder (cool_edge_local_warm)."
+    color_material_note: "Natural skin texture and pore detail on Wrasal; matte dark structured outerwear (wardrobe-wrasal-001); smudged bevel glass of Harlem vestibule door."
+    sound_cue: "sound-amb-harlem-night-001 transitioning to muffled interior vestibule acoustic isolation"
+    continuity_in: "Matches iron railing, brick stonework, and vestibule light fixture established in shot-open-001."
+    continuity_out: "Wrasal's hand reaches for vestibule buzzer/door handle; eye-line steady."
+    verification_target: "HARD BLOCKER: Requires human-approved Tier 00 FACE_MASTER for char-wrasal-001; verify absence of trench-coat/occult investigator clichés."
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
+
+  - shot_id: "shot-open-006"
+    scene_id: "scene-002"
+    scene_beat: "Scene 02 / Beat 02 — The Nine-Day Threshold Stated in Silence (Grant & Wrasal Two-Shot)"
+    dramatic_purpose: "Place Wrasal (the apprentice) and Mister Grant (the widower) in shared architectural space with the drawer/garment in background depth — establishing the human stakes of the Nine-Day Threshold."
+    characters_present:
+      - "char-grant-001"
+      - "char-wrasal-001"
+    location_id: "loc-grant-residence-001"
+    wardrobe_ids:
+      - "wardrobe-grant-001"
+      - "wardrobe-wrasal-001"
+    prop_ids:
+      - "prop-red-drawz-001"
+      - "prop-evidence-container-001"
+    shot_size: "Medium Wide Two-Shot (MW 2-Shot)"
+    camera_angle: "Eye-level hallway axis, framing Grant seated/standing in mid-ground, Wrasal near threshold, and the open drawer with a sliver of red cloth in background plane"
+    lens_feel: "35mm prime, f/5.6, moderate depth of field holding both human subjects and background object in spatial relation"
+    movement: "Locked tripod hold (architectural composure)"
+    lighting_motivation: "Motivated 2800K room lamp + hallway practical; deep shadow separation between doorway and interior room; zero red light wash."
+    color_material_note: "Neutral charcoal and warm wood tones dominate 98% of frame; prop-red-drawz-001 occupies a small, materially red focal point in background depth."
+    sound_cue: "sound-vo-wrasal-001 (composed standard British English — quiet intake question, pending screenplay lines) over sound-amb-grant-roomtone-001"
+    continuity_in: "Preserves room geometry, lamp position, and drawer 4.5-inch open state from shots 002–004; preserves Wrasal wardrobe from shot-open-005."
+    continuity_out: "Transitions into Practitioner Triad consultation sequence (Scene 03 — pending screenplay)."
+    verification_target: "HARD BLOCKER: Requires approved Tier 00 references for both char-wrasal-001 and char-grant-001 plus screenplay dialogue verification."
+    status: "reference-needed"
+    governance_status: "REFERENCE NEEDED"
